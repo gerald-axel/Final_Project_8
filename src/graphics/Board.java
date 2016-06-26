@@ -4,8 +4,14 @@ package graphics;
  *
  * @author gerald
  */
+import com.PruebaCamara;
+import com.serialsample;
+import static com.serialsample.difference;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 
@@ -46,18 +52,42 @@ public class Board extends JFrame implements MouseListener
         panel.add(button);
         add(panel);
         squares[0][8] = panel;
-        
+
         button.addActionListener((ActionEvent e) -> {
             MakeMove.makeArrayForTree();
             AlphaBethaPruning prune = new AlphaBethaPruning(MakeMove.matrixPieces);
             MakeMove.newBoardMachine = prune.YourTurn("black");
-            MakeMove.removeAllPieces();
-            MakeMove.newBoard();
-            PossibleMoves.possibleMoves.clear();
-            graphics.StartGame.board.repaintBoard();
-            MakeMove.changeTurn();
+            System.out.println("Finished Chess");
+            
+            /* Send info to Arduino */
+            serialsample main = new serialsample();
+            main.initialize();
+            String[] palabras = difference(MakeMove.matrixPieces, MakeMove.newBoardMachine);
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //String[] palabras = {"Hola","Adios"};
+            for (String palabra : palabras) {
+                try {
+                    main.escribir(palabra);
+                } catch (IOException ex) {
+                    Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            while(serialsample.response == null){}
+                serialsample.response = null;
+            }
+
+            System.out.println("Started");
+            main.close();
+            this.dispose();
+            PruebaCamara.main(null);
         });
     }
+    
     
     public Color getColor(int x, int y)
     {

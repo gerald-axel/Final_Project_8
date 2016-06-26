@@ -27,7 +27,7 @@ import pieces.Rook;
  */
 public class serialsample implements SerialPortEventListener {
     SerialPort serialPort;
-    static volatile String response = null;
+    public static volatile String response = null;
     
         /** The port we're normally going to use. */
 	private static final String PORT_NAMES[] = { 
@@ -188,7 +188,7 @@ public class serialsample implements SerialPortEventListener {
                         nxpos = x;
                         nypos = y;
                         if(pp!=null){
-                            commands.add(""+x+","+y+","+-1+","+-1);
+                            commands.add(""+x+","+y+","+0+","+-1);
                         }
                     }
                     

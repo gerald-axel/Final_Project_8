@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Gerald%20Alba/Documents/NetBeansProjects/Final_Project_8/src/com/PruebaCamara.java</file>
+            <file>file:/C:/Users/Gerald%20Alba/Documents/NetBeansProjects/Final_Project_8/src/logic/AlphaBethaPruning.java</file>
+            <file>file:/C:/Users/Gerald%20Alba/Documents/NetBeansProjects/Final_Project_8/src/graphics/StartGame.java</file>
             <file>file:/C:/Users/Gerald%20Alba/Documents/NetBeansProjects/Final_Project_8/src/com/Success.java</file>
+            <file>file:/C:/Users/Gerald%20Alba/Documents/NetBeansProjects/Final_Project_8/src/graphics/Board.java</file>
         </group>
     </open-files>
 </project-private>

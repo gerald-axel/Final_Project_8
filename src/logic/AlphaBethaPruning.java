@@ -13,12 +13,12 @@ public class AlphaBethaPruning {
 	public Piece[][] YourTurn(String player){
 		NodeAlphaBetha BestMove;
 		if(player.equals("black")){
-			BestMove = prune(root,-100000,100000,4,true);
+			BestMove = prune(root,-100000,100000,2,true);
 			root = null;
 			return BestMove.getMap();
 		}
 		else{
-			BestMove = prune(root,-100000,100000,4,false);
+			BestMove = prune(root,-100000,100000,2,false);
 			root = null;
 			return BestMove.getMap();
 		}

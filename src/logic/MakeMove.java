@@ -45,7 +45,7 @@ public class MakeMove
 		
         switch(piece.getType()){
 	        case "Pawn":
-	            graphics.StartGame.board.addPiece(new pieces.Pawn("src/main/java/pieces_images/" + colorImage + "pawn.png", piece.getTeam(), new int[]{newCoordenateX, newCoordenateY}), newCoordenateX, newCoordenateY);
+	            graphics.StartGame.board.addPiece(new pieces.Pawn("src/pieces_images/" + colorImage + "pawn.png", piece.getTeam(), new int[]{newCoordenateX, newCoordenateY}), newCoordenateX, newCoordenateY);
 	    		
 	            if(!(newCoordenateX == 1 || newCoordenateX == 6)){
 	    			((Piece) Board.squares[newCoordenateX][newCoordenateY].getAccessibleContext().getAccessibleChild(0)).setMovesCounter();
@@ -54,23 +54,23 @@ public class MakeMove
 	            break;
 	        
 	        case "Knight":
-	            graphics.StartGame.board.addPiece(new pieces.Knight("src/main/java/pieces_images/" + colorImage + "knight.png", piece.getTeam(), new int[]{newCoordenateX, newCoordenateY}), newCoordenateX, newCoordenateY);
+	            graphics.StartGame.board.addPiece(new pieces.Knight("src/pieces_images/" + colorImage + "knight.png", piece.getTeam(), new int[]{newCoordenateX, newCoordenateY}), newCoordenateX, newCoordenateY);
 	            break;
 	            
 	        case "King":
-	            graphics.StartGame.board.addPiece(new pieces.King("src/main/java/pieces_images/" + colorImage + "king.png", piece.getTeam(), new int[]{newCoordenateX, newCoordenateY}), newCoordenateX, newCoordenateY);
+	            graphics.StartGame.board.addPiece(new pieces.King("src/pieces_images/" + colorImage + "king.png", piece.getTeam(), new int[]{newCoordenateX, newCoordenateY}), newCoordenateX, newCoordenateY);
 	            break;
 	            
 	        case "Bishop":
-	            graphics.StartGame.board.addPiece(new pieces.Bishop("src/main/java/pieces_images/" + colorImage + "bishop.png", piece.getTeam(), new int[]{newCoordenateX, newCoordenateY}), newCoordenateX, newCoordenateY);
+	            graphics.StartGame.board.addPiece(new pieces.Bishop("src/pieces_images/" + colorImage + "bishop.png", piece.getTeam(), new int[]{newCoordenateX, newCoordenateY}), newCoordenateX, newCoordenateY);
 	            break;
 	            
 	        case "Rook":
-	            graphics.StartGame.board.addPiece(new pieces.Rook("src/main/java/pieces_images/" + colorImage + "rook.png", piece.getTeam(), new int[]{newCoordenateX, newCoordenateY}), newCoordenateX, newCoordenateY);
+	            graphics.StartGame.board.addPiece(new pieces.Rook("src/pieces_images/" + colorImage + "rook.png", piece.getTeam(), new int[]{newCoordenateX, newCoordenateY}), newCoordenateX, newCoordenateY);
 	            break;
 	            
 	        case "Queen":
-	            graphics.StartGame.board.addPiece(new pieces.Queen("src/main/java/pieces_images/" + colorImage + "queen.png", piece.getTeam(), new int[]{newCoordenateX, newCoordenateY}), newCoordenateX, newCoordenateY);
+	            graphics.StartGame.board.addPiece(new pieces.Queen("src/pieces_images/" + colorImage + "queen.png", piece.getTeam(), new int[]{newCoordenateX, newCoordenateY}), newCoordenateX, newCoordenateY);
 	            break;
         }
         

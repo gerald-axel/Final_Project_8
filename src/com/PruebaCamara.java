@@ -16,9 +16,14 @@ import pieces.*;
 import graphics.*;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PruebaCamara {
+
+    //public static String []vars= {"H","T","E","Y","I","P","N","X","L","A","O","K"};
+    public static Character []vars = {'H','T','E','Y','I','P','N','X','L','A','O','K'};
+    public static List<Character> vars2 = new ArrayList<>(Arrays.asList('H','T','E','Y','I','P','N','X','L','A','O','K'));
 
     
     public  static void main(String[] args) {
@@ -30,7 +35,7 @@ public class PruebaCamara {
         BufferedImage[][] tablero = getChessTable(capture);
         
         /* Creating Board */
-        StartGame.board.createSquares();        
+        StartGame.board.createSquares();      
         imagesOCR(tablero);
         StartGame.board.setVisible(true);
         
@@ -57,8 +62,8 @@ public class PruebaCamara {
     }
     
     public static BufferedImage[][] getChessTable(BufferedImage capture){
-        int chunkWidth = capture.getWidth()/ 8; // determines the chunk width and height  
-        int chunkHeight = capture.getHeight() / 8;  
+        int chunkWidth = 480/ 8; // determines the chunk width and height  
+        int chunkHeight = 480 / 8;  
         BufferedImage imgs[][] = new BufferedImage[8][8]; //Image array to hold image chunks  
         
         for (int x = 0; x < 8; x++) 
@@ -106,59 +111,62 @@ public class PruebaCamara {
         String result = "";
         
         try {
-            result = instance.doOCR(images[0][0]);
-            System.out.println(result);
-            /*
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     result = instance.doOCR(images[i][j]);
-                    System.out.println(result);
-                    //textToPieces(result, i, j);
+                    textToPieces(result, i, j);
                 }
             }
-            */
+            
         } catch (TesseractException e) {
             System.err.println(e.getMessage());
         }
     }
     
     public static void textToPieces(String imageText, int i, int j){
+        
+        for (int k = 0; k < 12; k++) 
+            for (int l = 0; l < imageText.length(); l++) 
+                if(vars[k] == imageText.charAt(l)){
+                    imageText = vars[k].toString();
+                    break;
+                }
+        
+        if(imageText.equals("H")){
+           StartGame.board.addPiece(new Pawn("src/pieces_images/Wpawn.png", "white", new int[]{j, i}), j, i);
 
-        if(imageText.equals("A")){
-           StartGame.board.addPiece(new Pawn("src/main/java/pieces_images/Wpawn.png", "white", new int[]{j, i}), j, i);
-
-        } else if(imageText.equals("B")){
-           StartGame.board.addPiece(new Rook("src/main/java/pieces_images/Wrook.png", "white", new int[]{j, i}), j, i);
-
-        } else if(imageText.equals("R")) {
-           StartGame.board.addPiece(new King("src/main/java/pieces_images/Wking.png", "white", new int[]{j, i}), j, i);
-
-        } else if(imageText.equals("Y")) {
-           StartGame.board.addPiece(new Queen("src/main/java//pieces_images/Wqueen.png", "white", new int[]{j, i}), j, i);
-
-        } else if(imageText.equals("G")) {
-           StartGame.board.addPiece(new Bishop("src/main/java/pieces_images/Wbishop.png", "white", new int[]{j, i}), j, i);
-
-        } else if(imageText.equals("D")) {
-           StartGame.board.addPiece(new Knight("src/main/java/pieces_images/Wknight.png", "white", new int[]{j, i}), j, i);
-
-        } else if(imageText.equals("X")) {
-           StartGame.board.addPiece(new Pawn("src/pieces_images/Bpawn.png", "black", new int[]{j, i}), j, i);
-
-        } else if(imageText.equals("Z")) {
-           StartGame.board.addPiece(new Rook("src/main/java/pieces_images/Brook.png", "black", new int[]{j, i}), j, i);
-
-        } else if(imageText.equals("Q")) {
-           StartGame.board.addPiece(new King("src/main/java/pieces_images/Bking.png", "black", new int[]{j, i}), j, i);
-
-        } else if(imageText.equals("I")) {
-           StartGame.board.addPiece(new Queen("src/main/java/pieces_images/Bqueen.png", "black", new int[]{j, i}), j, i);
+        } else if(imageText.equals("X")){
+           StartGame.board.addPiece(new Rook("src/pieces_images/Wrook.png", "white", new int[]{j, i}), j, i);
 
         } else if(imageText.equals("K")) {
-            StartGame.board.addPiece(new Bishop("src/main/java/pieces_images/Bbishop.png", "black", new int[]{j, i}), j, i);
+           StartGame.board.addPiece(new King("src/pieces_images/Wking.png", "white", new int[]{j, i}), j, i);
+
+        } else if(imageText.equals("O")) {
+           StartGame.board.addPiece(new Queen("src/pieces_images/Wqueen.png", "white", new int[]{j, i}), j, i);
+
+        } else if(imageText.equals("A")) {
+           StartGame.board.addPiece(new Bishop("src/pieces_images/Wbishop.png", "white", new int[]{j, i}), j, i);
+           
+        } else if(imageText.equals("L")) {
+           StartGame.board.addPiece(new Knight("src/pieces_images/Wknight.png", "white", new int[]{j, i}), j, i);
+
+        } else if(imageText.equals("N")) {
+           StartGame.board.addPiece(new Pawn("src/pieces_images/Bpawn.png", "black", new int[]{j, i}), j, i);
 
         } else if(imageText.equals("T")) {
-            StartGame.board.addPiece(new Knight("src/main/java/pieces_images/Bknight.png", "black", new int[]{j, i}), j, i);
+           StartGame.board.addPiece(new Rook("src/pieces_images/Brook.png", "black", new int[]{j, i}), j, i);
+
+        } else if(imageText.equals("P")) {
+           StartGame.board.addPiece(new King("src/pieces_images/Bking.png", "black", new int[]{j, i}), j, i);
+
+        } else if(imageText.equals("I")) {
+           StartGame.board.addPiece(new Queen("src/pieces_images/Bqueen.png", "black", new int[]{j, i}), j, i);
+
+        } else if(imageText.equals("Y")) {
+            StartGame.board.addPiece(new Bishop("src/pieces_images/Bbishop.png", "black", new int[]{j, i}), j, i);
+
+        } else if(imageText.equals("E")) {
+            StartGame.board.addPiece(new Knight("src/pieces_images/Bknight.png", "black", new int[]{j, i}), j, i);
 
         } else {
 
@@ -166,7 +174,7 @@ public class PruebaCamara {
     }
     
     public static void gettingPreview(){
-        int dimensionX = 640 / 8;
+        int dimensionX = 480 / 8;
         int dimnesionY = 480 / 8;
         
         JFrame frame = new JFrame();
@@ -189,7 +197,7 @@ public class PruebaCamara {
         
         for (int j = dimnesionY; j < 480; j+= dimnesionY) {
             button= new JButton();
-            button.setBounds(0, j, 640, 2);
+            button.setBounds(0, j, 480, 2);
             panel.add(button);
         }
         

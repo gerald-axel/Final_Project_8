@@ -15,23 +15,15 @@ import java.awt.geom.*;
 
 class Success extends JFrame{
 
-    public Success(){
-        JPanel panel=new JPanel();
-        getContentPane().add(panel);
-        setSize(450,450);
+    public static void main(String[] args){
 
-        JButton button =new JButton("press");
-        panel.add(button);
-    }
-
-    public void paint(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        Line2D lin = new Line2D.Float(100, 100, 250, 260);
-        g2.draw(lin);
-    }
-
-    public static void main(String []args){
-        Success s=new Success();
-        s.setVisible(true);
+int L2 = 3;
+int L1 = 1;
+    for( int i = 3; i <= 60; i++ ) {
+    int L = L1 + L2;
+            System.out.println(L); //or whatever output function you have
+    L2 = L1;
+    L1 = L;
+ }
     }
 }
